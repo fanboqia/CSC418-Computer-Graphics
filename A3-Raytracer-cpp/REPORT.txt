@@ -1,0 +1,46 @@
+*************************
+Overall Submission:
+
+Report.txt
+PartA complete.
+PartB hard shadow and recursive ray tracing,soft shadow, glossy reflection, depth of field, anti-aliasing, texture mapping.
+CHECKLIST.txt
+
+The project consists of two parts, with PartA implementing basic ray-tracer and render a simple scene using ray casting and local illumination, and with PartB implementing more 
+*************************
+PartA: 
+I implemented a basic ray-tracer and render a simple scene using ray casting and local illumination.
+
+Files modified: 
+
+scene_object.cpp : I implemented ray intersecting with unit sphere and unit square using the knowledge learned from class.
+
+raytracer.cpp: I converted a camera coordinate ray into a world coordinate ray for shade function to compute.
+
+light_source.cpp: I implemented phong illumination model by applying the formula from class. (First do Normal dot Light to get diffuse, do ReflectLight dot View to get specular and lastly add the ambient color.)
+
+*************************
+PartB:
+I implemented hard shadows, recursive ray tracing, soft shadow, glossy reflection, depth of field, anti-aliasing, texture mapping.
+
+Files modified: 
+
+scene_object.cpp: add convert_to_uvCoord() function for texture mapping which is to convert from xyz coordinate to uv coordinate to get color on the picture.
+
+util.h: Add Texture structure to store bmp file rgb color array and also using the function getColor(Ray &ray) to map the ray from the uv coordinate obtained when ray intersects with objects which is stored in ray3D to color stored in rgb array.
+
+raytracer.cpp: I add a few #define to turn special effects on or off. This file contains all the implementations stated above. Antialiasing is implemented within shooting rays to get average color of a pixel by supersampling and depth of field is implemented inside antialiasing to get more samples of a pixel to map to a desired pixel by using formula provided from slides. Soft shadow uses similar thought by converting a point light to sphere light and samples more to achieve a gradual change of edge color. Glossy reflection  uses the formula provided from the slide which is to generate an imperfect reflection in hemisphere. Texture mapping uses the bmp file to first read in the picture color into color array and then everytime when a ray intersects an object, convert the xyz coordinate to uv coordinate using uv sphere mapping formula and then get color in corresponding uv coordinate.
+
+main.cpp: Modified a few parameters of the scene provided and add more scene objects and materials.
+
+*************************
+External Sources:
+tutorial slide Ray Tracing  - Part 1 from TA Muhammed Anwar & Kevin Gibson (recursive ray racing, hard shadow, phong illumination, plane intersection, CameraRay To WorldRay)
+tutorial slide Ray Tracing  - Part 2 from TA Muhammed Anwar (Soft Shadow, depth of field, antialiasing, Glossy reflection)
+https://github.com/trentmwillis/ray-tracer/blob/master/main.c  (SuperSampling)
+https://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html   (Texture Mapping)
+http://www.dgp.toronto.edu/~karan/courses/418/slides/lecture8a.compressed.pdf (SphereIntersection)
+
+*************************
+Role:
+I complete this assignment by myself.
